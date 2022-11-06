@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32811.315
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FLKEngine", "FLKEngine.csproj", "{178C2E41-0F15-411D-A851-C8362012915E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		ANDROID|Any CPU = ANDROID|Any CPU
+		DEV|Any CPU = DEV|Any CPU
+		WINDOWS|Any CPU = WINDOWS|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{178C2E41-0F15-411D-A851-C8362012915E}.ANDROID|Any CPU.ActiveCfg = ANDROID|Any CPU
+		{178C2E41-0F15-411D-A851-C8362012915E}.ANDROID|Any CPU.Build.0 = ANDROID|Any CPU
+		{178C2E41-0F15-411D-A851-C8362012915E}.DEV|Any CPU.ActiveCfg = DEV|Any CPU
+		{178C2E41-0F15-411D-A851-C8362012915E}.DEV|Any CPU.Build.0 = DEV|Any CPU
+		{178C2E41-0F15-411D-A851-C8362012915E}.WINDOWS|Any CPU.ActiveCfg = WINDOWS|Any CPU
+		{178C2E41-0F15-411D-A851-C8362012915E}.WINDOWS|Any CPU.Build.0 = WINDOWS|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A62DD6A5-9782-4675-A56E-5A6AB96E1879}
+	EndGlobalSection
+EndGlobal
