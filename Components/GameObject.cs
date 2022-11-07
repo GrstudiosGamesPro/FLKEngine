@@ -71,7 +71,7 @@ namespace FLKEngine.Components
 
         public Vector3 Position = new Vector3(0, 0, 0);
         public Vector3 Rotation = new Vector3(0, 0, 0);
-        public float Scale = 0.01f;
+        public Vector3 Scale = new Vector3 (0.01f, 0.01f, 0.01f);
 
         public RigidBody body;
 

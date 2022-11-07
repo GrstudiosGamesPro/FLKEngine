@@ -40,7 +40,9 @@ namespace FLKEngine.EngineData
                     RotationArray.Add(EngineWindows.instance.CurrentOpenScene.ObjectsInScene[i].Rotation.Z);
 
                     JArray ScaleArray = new JArray();
-                    ScaleArray.Add(EngineWindows.instance.CurrentOpenScene.ObjectsInScene[i].Scale);
+                    ScaleArray.Add(EngineWindows.instance.CurrentOpenScene.ObjectsInScene[i].Scale.X);
+                    ScaleArray.Add(EngineWindows.instance.CurrentOpenScene.ObjectsInScene[i].Scale.Y);
+                    ScaleArray.Add(EngineWindows.instance.CurrentOpenScene.ObjectsInScene[i].Scale.Z);
 
                     JArray PathModelURL = new JArray();
                     PathModelURL.Add(EngineWindows.instance.CurrentOpenScene.ObjectsInScene[i].CurrentModelPath);
@@ -99,7 +101,9 @@ namespace FLKEngine.EngineData
                     NameArray.Add(EngineWindows.instance.CurrentOpenScene.ObjectsInScene[i].Name);
 
                     JArray ScaleArray = new JArray();
-                    ScaleArray.Add(EngineWindows.instance.CurrentOpenScene.ObjectsInScene[i].Scale);
+                    ScaleArray.Add(EngineWindows.instance.CurrentOpenScene.ObjectsInScene[i].Scale.X);
+                    ScaleArray.Add(EngineWindows.instance.CurrentOpenScene.ObjectsInScene[i].Scale.Y);
+                    ScaleArray.Add(EngineWindows.instance.CurrentOpenScene.ObjectsInScene[i].Scale.Z);
 
                     JArray PositionArray = new JArray();
                     PositionArray.Add(EngineWindows.instance.CurrentOpenScene.ObjectsInScene[i].Position.X);

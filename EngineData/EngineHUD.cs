@@ -95,7 +95,7 @@ namespace FLKEngine.GUI
                         {
                             GameObject obj = new GameObject();
                             obj.LoadModel("E:\\Proyectos VS\\FLKEEngine\\Commons\\GizmosModels\\video_camera.fbx");
-                            obj.Scale = 0.01f;
+                            obj.Scale = new Vector3(0.01f, 0.01f, 0.01f);
                         }
                         ImGui.End();
                     }
@@ -231,9 +231,15 @@ namespace FLKEngine.GUI
                 ImGui.DragFloat3("Rotation", ref a, 0.01f);
                 EngineWindows.instance.CurrentObjectSelect.Rotation = new Vector3(a.X, a.Y, a.Z);
 
-                float scale = EngineWindows.instance.CurrentObjectSelect.Scale;
+                Vector3 scaleOBJ = EngineWindows.instance.CurrentObjectSelect.Scale;
+                System.Numerics.Vector3 b = new System.Numerics.Vector3(scaleOBJ.X, scaleOBJ.Y, scaleOBJ.Z);
+
+                ImGui.DragFloat3("Scale", ref b, 0.01f);
+                EngineWindows.instance.CurrentObjectSelect.Scale = new Vector3(b.X, b.Y, b.Z);
+
+                /*float scale = EngineWindows.instance.CurrentObjectSelect.Scale;
                 ImGui.DragFloat("Scale", ref scale, 0.001f);
-                EngineWindows.instance.CurrentObjectSelect.Scale = scale;
+                EngineWindows.instance.CurrentObjectSelect.Scale = scale;*/
 
                 ImGui.Separator();
 

@@ -371,6 +371,7 @@ namespace FLKEngine.EngineData
                 model *= Matrix4.CreateRotationY     (CurrentOpenScene.ObjectsInScene[i].Rotation.Y);
                 model *= Matrix4.CreateRotationZ     (CurrentOpenScene.ObjectsInScene[i].Rotation.Z);
                 model *= Matrix4.CreateTranslation   (CurrentOpenScene.ObjectsInScene[i].Position);
+                
                 _lightingShader.SetMatrix4("model", model);
 
                 if (CurrentOpenScene.ObjectsInScene[i].modelo != null && CurrentOpenScene.ObjectsInScene[i] != null)

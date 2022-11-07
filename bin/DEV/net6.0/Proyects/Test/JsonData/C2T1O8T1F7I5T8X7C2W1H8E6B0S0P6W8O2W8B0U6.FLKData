@@ -1,0 +1,37 @@
+{
+  "ObjectName": [
+    "GameObject6317"
+  ],
+  "Scale": [
+    16.6,
+    16.6,
+    16.6
+  ],
+  "ObjectID": [
+    "C2T1O8T1F7I5T8X7C2W1H8E6B0S0P6W8O2W8B0U6"
+  ],
+  "Position": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "Rotation": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "UrlModelPath": [
+    "F:\\GameEngines VS\\FFLK\\FLKEngine\\bin\\DEV\\net6.0/Proyects/Test/Models\\esfera.fbx"
+  ],
+  "DiffuseURLPath": [
+    "F:\\GameEngines VS\\FFLK\\FLKEngine\\bin\\DEV\\net6.0/EngineLibrarys/TextureData/SkyBox_11_HDR.jpg"
+  ],
+  "SpecularURLPath": [
+    "F:\\GameEngines VS\\FFLK\\FLKEngine\\bin\\DEV\\net6.0/EngineLibrarys/TextureData/SkyBox_11_HDR.jpg"
+  ],
+  "Scripts": [],
+  "ScriptsName": [],
+  "UsePhysics": [
+    false
+  ]
+}

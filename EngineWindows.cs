@@ -171,101 +171,109 @@ namespace FLKEngine
 
         public void LoadSceneData()
         {
-            string[] AllArchives = Directory.GetFiles(CurrentProyectUrl + "/Proyects/Test/JsonData/");
+            if (Directory.Exists (CurrentProyectUrl + "/Proyects/Test/JsonData/")) {
+                string[] AllArchives = Directory.GetFiles(CurrentProyectUrl + "/Proyects/Test/JsonData/");
 
-            for (int i = 0; i < AllArchives.Length; i++)
-            {
-                string JsonLoaded = AllArchives[i];
+                for (int i = 0; i < AllArchives.Length; i++)
+                {
+                    string JsonLoaded = AllArchives[i];
 
-                string JsonRead = File.ReadAllText (JsonLoaded);
+                    string JsonRead = File.ReadAllText(JsonLoaded);
 
-                var dataJson = JsonArray.Parse(JsonRead);
+                    var dataJson = JsonArray.Parse(JsonRead);
 
-                GameObject gm = new GameObject();
-                gm.Name = dataJson["ObjectName"][0].ToString();
-                gm.ObjectID = dataJson["ObjectID"][0].ToString();
+                    GameObject gm = new GameObject();
+                    gm.Name = dataJson["ObjectName"][0].ToString();
+                    gm.ObjectID = dataJson["ObjectID"][0].ToString();
 
 #if WINDOWS
                 gm.ChangePositionOnLoadGame (new Vector3((float)dataJson["Position"][0], (float)dataJson["Position"][1], (float)dataJson["Position"][2]));
 #else
-                gm.Position = new Vector3((float)dataJson["Position"][0], (float)dataJson["Position"][1], (float)dataJson["Position"][2]);
+                    gm.Position = new Vector3((float)dataJson["Position"][0], (float)dataJson["Position"][1], (float)dataJson["Position"][2]);
 #endif
-                gm.Rotation = new Vector3 ((float)dataJson["Rotation"][0], (float)dataJson["Rotation"][1], (float)dataJson["Rotation"][2]);
-                gm.Scale = (float)dataJson["Scale"][0];
+                    gm.Rotation = new Vector3((float)dataJson["Rotation"][0], (float)dataJson["Rotation"][1], (float)dataJson["Rotation"][2]);
+                    gm.Scale = new Vector3((float)dataJson["Scale"][0], (float)dataJson["Scale"][1], (float)dataJson["Scale"][2]);
 
-                gm.LoadModel(dataJson["UrlModelPath"][0].ToString());
-                gm._diffuseMap = Texture.LoadFromFile (dataJson["DiffuseURLPath"][0].ToString());
-                gm._specularMap = Texture.LoadFromFile(dataJson["SpecularURLPath"][0].ToString());
+                    gm.LoadModel(dataJson["UrlModelPath"][0].ToString());
+                    gm._diffuseMap = Texture.LoadFromFile(dataJson["DiffuseURLPath"][0].ToString());
+                    gm._specularMap = Texture.LoadFromFile(dataJson["SpecularURLPath"][0].ToString());
 
-                gm._specularMapURL = dataJson["SpecularURLPath"][0].ToString();
-                gm._diffuseMapURL = dataJson["DiffuseURLPath"][0].ToString();
+                    gm._specularMapURL = dataJson["SpecularURLPath"][0].ToString();
+                    gm._diffuseMapURL = dataJson["DiffuseURLPath"][0].ToString();
 
-                int scriptsExistentes = dataJson["Scripts"].AsArray().Count;
+                    int scriptsExistentes = dataJson["Scripts"].AsArray().Count;
 
-                for (int a = 0; a < scriptsExistentes; a++)
-                {
-                    LuaCompiller sl = new LuaCompiller();
-                    sl.ScriptName = (string)dataJson["ScriptsName"][a];
-                    sl.ObjectID = (string)dataJson["Scripts"][a];
-                    gm.lua.Add (sl);
+                    for (int a = 0; a < scriptsExistentes; a++)
+                    {
+                        LuaCompiller sl = new LuaCompiller();
+                        sl.ScriptName = (string)dataJson["ScriptsName"][a];
+                        sl.ObjectID = (string)dataJson["Scripts"][a];
+                        gm.lua.Add(sl);
+                    }
+
+                    gm.UsePhysics = (bool)dataJson["UsePhysics"][0];
+                    gm.StartScript();
+
                 }
-
-                gm.UsePhysics = (bool)dataJson["UsePhysics"][0];
-                gm.StartScript();
             }
         }
 
+
         public void LoadGameData()
         {
-            string[] AllArchives = Directory.GetFiles(CurrentProyectUrl + "/FLKData/ObjectsJson/");
-
-            for (int i = 0; i < AllArchives.Length; i++)
+            if (Directory.Exists(CurrentProyectUrl + "/Proyects/Test/JsonData/"))
             {
-                string JsonLoaded = AllArchives[i];
 
-                string JsonRead = File.ReadAllText(JsonLoaded);
+                string[] AllArchives = Directory.GetFiles(CurrentProyectUrl + "/FLKData/ObjectsJson/");
 
-                Console.WriteLine ("Loading file: " + JsonRead);
+                for (int i = 0; i < AllArchives.Length; i++)
+                {
+                    string JsonLoaded = AllArchives[i];
 
-                var dataJson = JsonArray.Parse(JsonRead);
+                    string JsonRead = File.ReadAllText(JsonLoaded);
 
-                GameObject gm = new GameObject();
-                gm.Name = dataJson["NameObject"][0].ToString();
-                gm.ObjectID = dataJson["ObjectID"][0].ToString();
+                    Console.WriteLine("Loading file: " + JsonRead);
 
-                string newExtensionModel = Path.ChangeExtension(dataJson["UrlModelPath"][0].ToString(), ".FLKModelPackageData");
+                    var dataJson = JsonArray.Parse(JsonRead);
 
-                gm.LoadModel(CurrentProyectUrl + "/FLKData/ModelsData/" + newExtensionModel);
+                    GameObject gm = new GameObject();
+                    gm.Name = dataJson["NameObject"][0].ToString();
+                    gm.ObjectID = dataJson["ObjectID"][0].ToString();
 
-                string diffuseMaptextureNexExtension = Path.ChangeExtension(dataJson["DiffuseURLPath"][0].ToString(), ".FLKTexturePackageData");
-                string specularMaptextureNexExtension = Path.ChangeExtension(dataJson["SpecularURLPath"][0].ToString(), ".FLKTexturePackageData");
+                    string newExtensionModel = Path.ChangeExtension(dataJson["UrlModelPath"][0].ToString(), ".FLKModelPackageData");
 
-                gm._diffuseMap = Texture.LoadFromFile(CurrentProyectUrl + "/FLKData/TextureData/" + diffuseMaptextureNexExtension);
-                gm._specularMap = Texture.LoadFromFile(CurrentProyectUrl + "/FLKData/TextureData/" + specularMaptextureNexExtension);
+                    gm.LoadModel(CurrentProyectUrl + "/FLKData/ModelsData/" + newExtensionModel);
+
+                    string diffuseMaptextureNexExtension = Path.ChangeExtension(dataJson["DiffuseURLPath"][0].ToString(), ".FLKTexturePackageData");
+                    string specularMaptextureNexExtension = Path.ChangeExtension(dataJson["SpecularURLPath"][0].ToString(), ".FLKTexturePackageData");
+
+                    gm._diffuseMap = Texture.LoadFromFile(CurrentProyectUrl + "/FLKData/TextureData/" + diffuseMaptextureNexExtension);
+                    gm._specularMap = Texture.LoadFromFile(CurrentProyectUrl + "/FLKData/TextureData/" + specularMaptextureNexExtension);
 
 
 #if WINDOWS
                 gm.ChangePositionOnLoadGame(new Vector3((float)dataJson["Position"][0], (float)dataJson["Position"][1], (float)dataJson["Position"][2]));
 #else
-                gm.Position = new Vector3((float)dataJson["Position"][0], (float)dataJson["Position"][1], (float)dataJson["Position"][2]);
-#endif                
-                gm.Rotation = new Vector3((float)dataJson["Rotation"][0], (float)dataJson["Rotation"][1], (float)dataJson["Rotation"][2]);
-                gm.Scale = (float)dataJson["Scale"][0];
+                    gm.Position = new Vector3((float)dataJson["Position"][0], (float)dataJson["Position"][1], (float)dataJson["Position"][2]);
+#endif
+                    gm.Rotation = new Vector3((float)dataJson["Rotation"][0], (float)dataJson["Rotation"][1], (float)dataJson["Rotation"][2]);
+                    gm.Scale = new Vector3((float)dataJson["Scale"][0], (float)dataJson["Scale"][1], (float)dataJson["Scale"][2]);
 
-                int scriptsExistentes = dataJson["Scripts"].AsArray().Count;
+                    int scriptsExistentes = dataJson["Scripts"].AsArray().Count;
 
-                for (int a = 0; a < scriptsExistentes; a++)
-                {
-                    LuaCompiller sl = new LuaCompiller();
-                    sl.ScriptName = (string)dataJson["ScriptsName"][a];
-                    sl.ObjectID = (string)dataJson["Scripts"][a];
-                    gm.lua.Add(sl);
-                }
+                    for (int a = 0; a < scriptsExistentes; a++)
+                    {
+                        LuaCompiller sl = new LuaCompiller();
+                        sl.ScriptName = (string)dataJson["ScriptsName"][a];
+                        sl.ObjectID = (string)dataJson["Scripts"][a];
+                        gm.lua.Add(sl);
+                    }
 
-                gm.UsePhysics = (bool)dataJson["UsePhysics"][0];
+                    gm.UsePhysics = (bool)dataJson["UsePhysics"][0];
 #if !DEV
                 gm.StartScript();
 #endif
+                }
             }
         }
 
