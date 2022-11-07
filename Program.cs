@@ -36,69 +36,99 @@ namespace FLKEngine
 
 
 
-            if (!Directory.Exists (CurrentDirector + "/Proyects/"))
+            if (Directory.Exists(CurrentDirector + "/Proyects/Test/"))
             {
-                Directory.CreateDirectory (CurrentDirector + "/Proyects/");
-                
-                if (Directory.Exists (CurrentDirector + "/Proyects/"))
+                if (!Directory.Exists(CurrentDirector + "/Proyects/Test/Models"))
                 {
-                    Console.WriteLine ("Proyects Folder Created");
+                    Directory.CreateDirectory(CurrentDirector + "/Proyects/Test/Models");
+                }
+
+                if (!Directory.Exists(CurrentDirector + "/Proyects/Test/Textures"))
+                {
+                    Directory.CreateDirectory(CurrentDirector + "/Proyects/Test/Textures");
+                }
+
+                if (!Directory.Exists(CurrentDirector + "/Proyects/Test/JsonData"))
+                {
+                    Directory.CreateDirectory(CurrentDirector + "/Proyects/Test/JsonData");
+                }
+
+                if (!Directory.Exists(CurrentDirector + "/Proyects/Test/Scripts"))
+                {
+                    Directory.CreateDirectory(CurrentDirector + "/Proyects/Test/Scripts");
+                }
+
+                if (!Directory.Exists(CurrentDirector + "/Proyects/Test/Audio"))
+                {
+                    Directory.CreateDirectory(CurrentDirector + "/Proyects/Test/Audio");
+                }
+
+                if (!Directory.Exists(CurrentDirector + "/EngineLibrarys/ShaderData/"))
+                {
+                    Directory.CreateDirectory(CurrentDirector + "/EngineLibrarys/ShaderData/");
+                }
+
+                if (!Directory.Exists(CurrentDirector + "/EngineLibrarys/ModelsData/"))
+                {
+                    Directory.CreateDirectory(CurrentDirector + "/EngineLibrarys/ModelsData/");
+                }
+
+                if (!Directory.Exists(CurrentDirector + "/EngineLibrarys/TextureData/"))
+                {
+                    Directory.CreateDirectory(CurrentDirector + "/EngineLibrarys/TextureData/");
+                }
+
+                if (!Directory.Exists(CurrentDirector + "/EngineLibrarys/JsonData/"))
+                {
+                    Directory.CreateDirectory(CurrentDirector + "/EngineLibrarys/JsonData/");
                 }
             }
             else
             {
-                if (!Directory.Exists(CurrentDirector + "/Proyects/Test/"))
+                if (!Directory.Exists(CurrentDirector + "/Proyects/Test/Models"))
                 {
-                    Directory.CreateDirectory(CurrentDirector + "/Proyects/Test/");
+                    Directory.CreateDirectory(CurrentDirector + "/Proyects/Test/Models");
                 }
 
-                if (Directory.Exists (CurrentDirector + "/Proyects/Test/"))
+                if (!Directory.Exists(CurrentDirector + "/Proyects/Test/Textures"))
                 {
-                    if (!Directory.Exists(CurrentDirector + "/Proyects/Test/Models"))
-                    {
-                        Directory.CreateDirectory (CurrentDirector + "/Proyects/Test/Models");
-                    }
-
-                    if (!Directory.Exists(CurrentDirector + "/Proyects/Test/Textures"))
-                    {
-                        Directory.CreateDirectory(CurrentDirector + "/Proyects/Test/Textures");
-                    }
-
-                    if (!Directory.Exists(CurrentDirector + "/Proyects/Test/Scripts"))
-                    {
-                        Directory.CreateDirectory(CurrentDirector + "/Proyects/Test/Scripts");
-                    }
-
-                    if (!Directory.Exists(CurrentDirector + "/Proyects/Test/Audio"))
-                    {
-                        Directory.CreateDirectory(CurrentDirector + "/Proyects/Test/Audio");
-                    }
-
-                    if (!Directory.Exists(CurrentDirector + "/EngineLibrarys/ShaderData/"))
-                    {
-                        Directory.CreateDirectory(CurrentDirector + "/EngineLibrarys/ShaderData/");
-                    }
-
-                    if (!Directory.Exists(CurrentDirector + "/EngineLibrarys/ModelsData/"))
-                    {
-                        Directory.CreateDirectory(CurrentDirector + "/EngineLibrarys/ModelsData/");
-                    }
-
-                    if (!Directory.Exists(CurrentDirector + "/EngineLibrarys/TextureData/"))
-                    {
-                        Directory.CreateDirectory(CurrentDirector + "/EngineLibrarys/TextureData/");
-                    }
-
-                    if (!Directory.Exists(CurrentDirector + "/EngineLibrarys/JsonData/"))
-                    {
-                        Directory.CreateDirectory(CurrentDirector + "/EngineLibrarys/JsonData/");
-                    }
+                    Directory.CreateDirectory(CurrentDirector + "/Proyects/Test/Textures");
                 }
 
-                //string JsonLoaded = File.ReadAllText("E:\\Proyectos VS\\FLKEEngine\\bin\\DEV\\net6.0\\Proyects\\Test\\JsonData\\X3G8S4D3R8P7M5V0T8F4T0P2C2T1R7Q4N3M1S4B7.FLKData");
-               // var dataJson = JsonArray.Parse (JsonLoaded);
+                if (!Directory.Exists(CurrentDirector + "/Proyects/Test/JsonData"))
+                {
+                    Directory.CreateDirectory(CurrentDirector + "/Proyects/Test/JsonData");
+                }
 
-                Console.WriteLine ("Loading Proyects");
+                if (!Directory.Exists(CurrentDirector + "/Proyects/Test/Scripts"))
+                {
+                    Directory.CreateDirectory(CurrentDirector + "/Proyects/Test/Scripts");
+                }
+
+                if (!Directory.Exists(CurrentDirector + "/Proyects/Test/Audio"))
+                {
+                    Directory.CreateDirectory(CurrentDirector + "/Proyects/Test/Audio");
+                }
+
+                if (!Directory.Exists(CurrentDirector + "/EngineLibrarys/ShaderData/"))
+                {
+                    Directory.CreateDirectory(CurrentDirector + "/EngineLibrarys/ShaderData/");
+                }
+
+                if (!Directory.Exists(CurrentDirector + "/EngineLibrarys/ModelsData/"))
+                {
+                    Directory.CreateDirectory(CurrentDirector + "/EngineLibrarys/ModelsData/");
+                }
+
+                if (!Directory.Exists(CurrentDirector + "/EngineLibrarys/TextureData/"))
+                {
+                    Directory.CreateDirectory(CurrentDirector + "/EngineLibrarys/TextureData/");
+                }
+
+                if (!Directory.Exists(CurrentDirector + "/EngineLibrarys/JsonData/"))
+                {
+                    Directory.CreateDirectory(CurrentDirector + "/EngineLibrarys/JsonData/");
+                }
             }
 #endif
 
