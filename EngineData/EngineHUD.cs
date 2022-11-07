@@ -32,6 +32,8 @@ namespace FLKEngine.GUI
             }
         }
 
+        
+
 #if DEV
         public void DrawEngineGUI()
         {
@@ -42,19 +44,35 @@ namespace FLKEngine.GUI
             style.WindowBorderSize = 2f;
 
             style.ScrollbarSize = 25;
-            style.Alpha = 255f;
+            ImGui.GetStyle().WindowPadding = new System.Numerics.Vector2(15, 15);
+
+            style.Colors[(int)ImGuiCol.TextDisabled]  = new System.Numerics.Vector4(110f, 110f, 110f, 1.00f);
+            style.Colors[(int)ImGuiCol.Text] = new System.Numerics.Vector4(1f, 1f, 1f, 1);
+            style.Colors[(int)ImGuiCol.FrameBg] = new System.Numerics.Vector4(0.5f, 0.5f, 0.5f, 52);
+            style.Colors[(int)ImGuiCol.TitleBg] = new System.Numerics.Vector4(0.1f, 0.1f, 0.1f, 1);
+            style.Colors[(int)ImGuiCol.TitleBgActive] = new System.Numerics.Vector4(0.3f, 0.3f, 0.3f, 1);
+            
+           
 
             if (ImGui.BeginMainMenuBar())
             {
                 if (ImGui.BeginMenu("File"))
                 {
-                    if (ImGui.MenuItem("Open", "CTRL+O"))
+                    if (ImGui.MenuItem("New Scene", ""))
+                    {
+                        Scene data = new Scene();
+                        EngineWindows.instance.ConsoleData.Log ("New level generated");
+                    }
+
+                    ImGui.Separator();
+
+                    if (ImGui.MenuItem("Open", ""))
                     {
 
                     }
 
                     ImGui.Separator();
-                    if (ImGui.MenuItem("Save", "CTRL+S"))
+                    if (ImGui.MenuItem("Save", ""))
                     {
                         SaveEngineData data = new SaveEngineData();
                         data.Save(false);
@@ -128,6 +146,7 @@ namespace FLKEngine.GUI
 
                     ImGui.EndMenu();
                 }
+
                 if (ImGui.BeginMenu("Export"))
                 {
                     if (ImGui.Button("Windows"))
@@ -137,6 +156,7 @@ namespace FLKEngine.GUI
                     }
                     ImGui.EndMenu();
                 }
+
                 ImGui.EndMainMenuBar();
             }
 
@@ -197,10 +217,6 @@ namespace FLKEngine.GUI
 
                     ImGui.TreePop();
                 }
-
-
-                
-
 
                 Vector3 tmp = EngineWindows.instance.CurrentObjectSelect.Position;
                 System.Numerics.Vector3 v = new System.Numerics.Vector3(tmp.X, tmp.Y, tmp.Z);

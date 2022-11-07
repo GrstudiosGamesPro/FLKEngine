@@ -110,6 +110,8 @@ namespace FLKEngine
 
         public ImGuiController _ImGUI;
 
+        public float Delta;
+
         public EngineWindows(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings) : base(gameWindowSettings, nativeWindowSettings)
         {
 
@@ -209,6 +211,7 @@ namespace FLKEngine
                 }
 
                 gm.UsePhysics = (bool)dataJson["UsePhysics"][0];
+                gm.StartScript();
             }
         }
 
@@ -292,6 +295,7 @@ namespace FLKEngine
         {
             data.DevEdition (e);
             CurrentOpenScene.UpdateScene();
+            Delta = (float)e.Time;
         }
 
         protected override void OnMouseWheel(MouseWheelEventArgs e)

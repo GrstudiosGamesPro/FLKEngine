@@ -159,6 +159,17 @@ namespace FLKEngine.Components
         }
 #endif
 
+        public void CharacterMove (float x, float y, float z, float Speed)
+        {
+            JVector vel = new JVector(x * Speed * EngineWindows.instance.Delta, y * Speed * EngineWindows.instance.Delta, z * Speed * EngineWindows.instance.Delta);
+
+            body.AddForce (vel);
+        }
+
+        public void Move (string dir, float Speed)
+        {
+            Position = new Vector3 (Position.X, Position.Y, Position.Z + 1 * Speed * EngineWindows.instance.Delta);
+        }
 
         public void LoadModel (string LoadModelPath)
         {
@@ -176,6 +187,7 @@ namespace FLKEngine.Components
             Console.WriteLine("Component GameObject Initialize");
             EngineWindows.instance.CurrentOpenScene.AddBody(body);
         }
+
 
         public void AddComponent (FLKBehaviour cpp)
         {

@@ -2,6 +2,7 @@
 using FLKEngine.Lua.Librarys;
 using FLKEngine.Components;
 using FLKEngine.Commons;
+using FLKEngine.Librarys.LuaImplementation.Assemblys;
 
 namespace FLKEngine.Librarys.LuaImplementation
 {
@@ -49,6 +50,9 @@ namespace FLKEngine.Librarys.LuaImplementation
             UserData.RegisterType<PlayerData>();
             script.Globals["Data"] = new PlayerData();
 
+            UserData.RegisterType<InputData>();
+            script.Globals["Input"] = new InputData();
+
 
             UserData.RegisterType<LuaCL>();
             lcl.Owner = owner;
@@ -74,8 +78,11 @@ namespace FLKEngine.Librarys.LuaImplementation
             BinaryFormatterEasy eas = new BinaryFormatterEasy();
 
 
-            string Scripting = eas.DeserializeObject(ByteRead).ToString();
-
+#if !DEV
+            string Scripting = eas.DeserializeObject (ByteRead).ToString();
+#else
+            string Scripting = ByteRead;
+#endif
             LuaCL lcl = new LuaCL();
             Script script = new Script();
 
@@ -87,6 +94,9 @@ namespace FLKEngine.Librarys.LuaImplementation
 
             UserData.RegisterType<PlayerData>();
             script.Globals["Data"] = new PlayerData();
+
+            UserData.RegisterType<InputData>();
+            script.Globals["Input"] = new InputData();
 
             UserData.RegisterType<LuaCL>();
             lcl.Owner = owner;

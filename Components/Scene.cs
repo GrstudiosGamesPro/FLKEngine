@@ -51,11 +51,12 @@ namespace FLKEngine.Components
 
         public void UpdateScene()
         {
-#if WINDOWS                       
             for (int i = 0; i < ObjectsInScene.Count; i++)
             {
                 ObjectsInScene[i].UpdateScript();
             }
+
+#if WINDOWS                       
 
 
             world.Step(1.0f / 100.0f, true);

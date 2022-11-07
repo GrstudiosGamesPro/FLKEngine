@@ -11,6 +11,7 @@ namespace FLKEngine.Commons
     {
         public string SerializeObject(object o)
         {
+
             if (!o.GetType().IsSerializable)
             {
                 return null;
@@ -21,6 +22,7 @@ namespace FLKEngine.Commons
                 new BinaryFormatter().Serialize(stream, o);
                 return Convert.ToBase64String(stream.ToArray());
             }
+            return null;
         }
 
         public object DeserializeObject(string str)
