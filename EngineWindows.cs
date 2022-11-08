@@ -9,19 +9,10 @@ using ImGuiNET;
 using FLKEngine.Shaders;
 using FLKEngine.Commons;
 using MouseState = OpenTK.Input;
-using FLKEngine.Components.Managers;
-using Newtonsoft.Json.Linq;
 using System.Text.Json.Nodes;
-using System.Security.AccessControl;
-using System.Windows.Input;
-using System;
-using FLKEngine.Commons.Compiller;
-using FLKEngine.GUI;
 using FLKEngine.EngineData;
-using ImGuiSharp;
 using FLKEngine.Librarys.LuaImplementation;
-using System.Reflection;
-using System.Linq;
+using ImGuiSharp;
 
 namespace FLKEngine
 {
@@ -58,6 +49,8 @@ namespace FLKEngine
         public RenderData data;
         public GameObject _camera;
         bool ReadyForStartScene;
+
+        public EngineWindows window;
 
         public string EngineData
         {
@@ -158,7 +151,7 @@ namespace FLKEngine
             _lightingShader = new Shader(GetCurrentShaderFolder + "shader." + EngineExtensionsVert, GetCurrentShaderFolder + "lighting." + EngineExtensionsFrag);
             _lampShader = new Shader(GetCurrentShaderFolder + "shader." + EngineExtensionsVert, GetCurrentShaderFolder + "shader." + EngineExtensionsFrag);
 
-            //Console.WriteLine($"{GL.GetInteger(GetPName.MajorVersion)}.{GL.GetInteger(GetPName.MinorVersion)}");
+            //Console.WriteLine();
             data.OnLoad();
 
 #if DEV
@@ -187,7 +180,7 @@ namespace FLKEngine
                     gm.ObjectID = dataJson["ObjectID"][0].ToString();
 
 #if WINDOWS
-                gm.ChangePositionOnLoadGame (new Vector3((float)dataJson["Position"][0], (float)dataJson["Position"][1], (float)dataJson["Position"][2]));
+                    gm.ChangePositionOnLoadGame (new Vector3((float)dataJson["Position"][0], (float)dataJson["Position"][1], (float)dataJson["Position"][2]));
 #else
                     gm.Position = new Vector3((float)dataJson["Position"][0], (float)dataJson["Position"][1], (float)dataJson["Position"][2]);
 #endif
@@ -212,8 +205,6 @@ namespace FLKEngine
                     }
 
                     gm.UsePhysics = (bool)dataJson["UsePhysics"][0];
-                    gm.StartScript();
-
                 }
             }
         }
@@ -306,6 +297,7 @@ namespace FLKEngine
             Delta = (float)e.Time;
         }
 
+
         protected override void OnMouseWheel(MouseWheelEventArgs e)
         {
             base.OnMouseWheel(e);
@@ -327,8 +319,6 @@ namespace FLKEngine
 
             withd = e.Width;
             height = e.Height;
-
-            //_camera.AspectRatio = Size.X / (float)Size.Y;
         }
     }
 }

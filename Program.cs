@@ -1,4 +1,5 @@
-﻿using OpenTK.Mathematics;
+﻿using Assimp;
+using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
 using OpenTK.Windowing.GraphicsLibraryFramework;
@@ -143,6 +144,7 @@ namespace FLKEngine
             using (var window = new EngineWindows(GameWindowSettings.Default, nativeWindowSettings))
             {
                 window.CurrentProyectUrl = CurrentDirector;
+                window.window = window;
                 window.Run();
             }
         }

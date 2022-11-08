@@ -10,7 +10,8 @@ using FLKEngine.Librarys.LuaImplementation;
 using FLKEngine.Components.GameObjectMaster;
 using System.Diagnostics;
 using NUnit.Framework.Internal;
-
+using OpenTK.Graphics.OpenGL4;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace FLKEngine.GUI
 {
@@ -31,7 +32,6 @@ namespace FLKEngine.GUI
                 return EngineWindows.instance.data._camera;
             }
         }
-
         
 
 #if DEV
@@ -157,10 +157,11 @@ namespace FLKEngine.GUI
                     ImGui.EndMenu();
                 }
 
+                ImGui.Text ("OpenGL: " + $"{GL.GetInteger(GetPName.MajorVersion)}.{GL.GetInteger(GetPName.MinorVersion)}");
+                ImGui.Text ($"FPS:{1f / EngineWindows.instance.Delta:0000.0}");
+
                 ImGui.EndMainMenuBar();
             }
-
-           
 
             if (ImGui.Begin("Hierarchy"))
             {
