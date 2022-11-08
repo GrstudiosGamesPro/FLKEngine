@@ -52,7 +52,7 @@ namespace FLKEngine.GUI
             style.Colors[(int)ImGuiCol.TitleBg] = new System.Numerics.Vector4(0.1f, 0.1f, 0.1f, 1);
             style.Colors[(int)ImGuiCol.TitleBgActive] = new System.Numerics.Vector4(0.3f, 0.3f, 0.3f, 1);
             
-           
+            
 
             if (ImGui.BeginMainMenuBar())
             {
@@ -173,7 +173,7 @@ namespace FLKEngine.GUI
                     {
                         if (EngineWindows.instance.CurrentObjectSelect == CurrentOpenScene.ObjectsInScene[i])
                         {
-                            if (ImGui.Button(CurrentOpenScene.ObjectsInScene[i].Name + " (Selected)"))
+                            if (ImGui.Button(CurrentOpenScene.ObjectsInScene[i].Name + " <--"))
                             {
                                 EngineWindows.instance.CurrentObjectSelect = null;
                             }
@@ -327,6 +327,7 @@ namespace FLKEngine.GUI
                     }
 
                     if (ImGui.TreeNode ("Scripts"))
+
                     {
 
                         for (int a = 0; a < EngineWindows.instance.CurrentObjectSelect.lua.Count; a++)
