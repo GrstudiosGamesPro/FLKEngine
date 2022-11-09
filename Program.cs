@@ -1,13 +1,7 @@
-﻿using Assimp;
-using OpenTK.Mathematics;
+﻿using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
-using OpenTK.Windowing.GraphicsLibraryFramework;
-using System.IO;
 using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Text.Json;
-using System.Text.Json.Nodes;
 
 namespace FLKEngine
 {
@@ -136,7 +130,7 @@ namespace FLKEngine
             var nativeWindowSettings = new NativeWindowSettings()
             {
                 Size = new Vector2i(1920, 1080),
-                Title = "FLKEngine -> OpenGL4",
+                Title = "FLKEngine -> New Proyect",
 
                 Flags = ContextFlags.ForwardCompatible,
             };

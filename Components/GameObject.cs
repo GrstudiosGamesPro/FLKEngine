@@ -9,6 +9,7 @@ using Jitter.Collision.Shapes;
 using Jitter.LinearMath;
 using FLKEngine.Components.GameObjectMaster;
 using MoonSharp.Interpreter;
+using FLKEngine.Components.Data;
 
 namespace FLKEngine.Components
 {
@@ -20,7 +21,6 @@ namespace FLKEngine.Components
         public string Name;
 
         public bool UsePhysics;
-
 
         private float[] _vertices =
                 {

@@ -156,8 +156,8 @@ namespace FLKEngine.GUI
                     }
                     ImGui.EndMenu();
                 }
-
-                ImGui.Text ("OpenGL: " + $"{GL.GetInteger(GetPName.MajorVersion)}.{GL.GetInteger(GetPName.MinorVersion)}");
+                ImGui.Separator();
+                ImGui.Text("OpenGL: " + $"{GL.GetInteger(GetPName.MajorVersion)}.{GL.GetInteger(GetPName.MinorVersion)}");
                 ImGui.Text ($"FPS:{1f / EngineWindows.instance.Delta:0000.0}");
 
                 ImGui.EndMainMenuBar();

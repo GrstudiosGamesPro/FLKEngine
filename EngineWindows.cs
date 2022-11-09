@@ -214,7 +214,6 @@ namespace FLKEngine
         {
             if (Directory.Exists(CurrentProyectUrl + "/Proyects/Test/JsonData/"))
             {
-
                 string[] AllArchives = Directory.GetFiles(CurrentProyectUrl + "/FLKData/ObjectsJson/");
 
                 for (int i = 0; i < AllArchives.Length; i++)
@@ -295,6 +294,10 @@ namespace FLKEngine
             data.DevEdition (e);
             CurrentOpenScene.UpdateScene();
             Delta = (float)e.Time;
+
+            /*if (CurrentOpenScene.ObjectsInScene[1] != null && CurrentObjectSelect != null)
+            CurrentOpenScene.ObjectsInScene[1].Position = CurrentObjectSelect.Position;
+            */
         }
 
 
