@@ -51,6 +51,7 @@ namespace FLKEngine
         bool ReadyForStartScene;
 
         public EngineWindows window;
+        List<Keys> keysExist = new List<Keys>();
 
         public string EngineData
         {
@@ -158,7 +159,7 @@ namespace FLKEngine
             LoadSceneData();
 #else
             LoadGameData();
-#endif            
+#endif
         }
 
 
@@ -288,14 +289,14 @@ namespace FLKEngine
             SwapBuffers();
         }
 
-
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
             data.DevEdition (e);
             CurrentOpenScene.UpdateScene();
             Delta = (float)e.Time;
 
-            /*if (CurrentOpenScene.ObjectsInScene[1] != null && CurrentObjectSelect != null)
+            /*
+            if (CurrentOpenScene.ObjectsInScene[1] != null && CurrentObjectSelect != null)
             CurrentOpenScene.ObjectsInScene[1].Position = CurrentObjectSelect.Position;
             */
         }

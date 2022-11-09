@@ -15,7 +15,6 @@ namespace FLKEngine.Librarys.LuaImplementation.Assemblys
         public InputData()
         {
             keysExist = Enum.GetValues(typeof(Keys)).Cast<Keys>().ToList();
-
         }
 
         public bool OnKeyDown (string Key)
@@ -35,7 +34,7 @@ namespace FLKEngine.Librarys.LuaImplementation.Assemblys
             return false;
         }
 
-        public bool OnKeyPressed (string Key)
+        public bool OnKeyPressed(string Key)
         {
             var input = EngineWindows.instance.KeyboardState;
 
