@@ -51,8 +51,6 @@ namespace FLKEngine.Components
 
         public void UpdateScene()
         {
-
-
 #if WINDOWS                       
             world.Step(1.0f / 100.0f, true);
 

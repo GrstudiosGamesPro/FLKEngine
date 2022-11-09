@@ -7,7 +7,7 @@
     <Nullable>enable</Nullable>
     <Configurations>Debug;Release;DEV;ANDROID;WINDOWS</Configurations>
     <PackageIcon>EngineLogo.png</PackageIcon>
-    <ApplicationIcon>bin\DEV\net6.0\EngineData\Icons\EngineLogo.ico</ApplicationIcon>
+    <ApplicationIcon>data\Icons\EngineLogo.ico</ApplicationIcon>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -34,7 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="bin\DEV\net6.0\EngineData\Icons\EngineLogo.ico" />
+    <Content Include="data\Icons\EngineLogo.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -50,14 +50,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="bin\DEV\net6.0\EngineData\Icons\EngineLogo.png">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
+    <Folder Include="bin\DEV\net6.0\EngineData\Icons\" />
+    <Folder Include="Components\Gizmos\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Components\Gizmos\" />
+    <None Update="data\Icons\EngineLogo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
