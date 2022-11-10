@@ -284,7 +284,6 @@ namespace FLKEngine
 
         protected override void OnRenderFrame(FrameEventArgs args)
         {
-            RenderData data = new RenderData();
             data.Render (args);
 
 #if DEV
@@ -316,12 +315,12 @@ namespace FLKEngine
         protected override void OnResize(ResizeEventArgs e)
         {
             base.OnResize(e);
+            GL.Viewport(0, 0, Size.X, Size.Y);
 
 #if DEV
             _ImGUI.WindowResized (e.Width, e.Height);
 #endif
 
-            GL.Viewport(0, 0, Size.X, Size.Y);
 
             withd = e.Width;
             height = e.Height;
