@@ -32,6 +32,14 @@ namespace FLKEngine.GUI
                 return EngineWindows.instance.data._camera;
             }
         }
+
+        public string currentProyectURL
+        {
+            get
+            {
+                return EngineWindows.instance.CurrentProyectUrl + "/Proyects/Test/Models/";
+            }
+        }
         
 
 #if DEV
@@ -98,24 +106,7 @@ namespace FLKEngine.GUI
                             obj.Scale = new Vector3(0.01f, 0.01f, 0.01f);
                         }
                         ImGui.End();
-                    }
-
-                    if (ImGui.BeginMenu("Create Object"))
-                    {
-                        if (ImGui.MenuItem("Create Cube"))
-                        {
-                            GameObject obj = new GameObject();
-                        }
-
-
-                        ImGui.Separator();
-
-                        if (ImGui.Button("Load Model"))
-                        {
-                            Console.WriteLine("Model Import Starting");
-                        }
-                        ImGui.End();
-                    }
+                    } 
                     ImGui.End();
                 }
 

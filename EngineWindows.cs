@@ -21,10 +21,8 @@ namespace FLKEngine
     {
         public Vector3[] _pointLightPositions =
         {
-            new Vector3(0.7f, 0.2f, 2.0f),
-            new Vector3(2.3f, -3.3f, -4.0f),
-            new Vector3(-4.0f, 2.0f, -12.0f),
-            new Vector3(0.0f, 0.0f, -3.0f)
+
+
         };
 
         public bool _firstMove = true;
@@ -189,9 +187,9 @@ namespace FLKEngine
                     gm.Rotation = new Vector3((float)dataJson["Rotation"][0], (float)dataJson["Rotation"][1], (float)dataJson["Rotation"][2]);
                     gm.Scale = new Vector3((float)dataJson["Scale"][0], (float)dataJson["Scale"][1], (float)dataJson["Scale"][2]);
 
-                    gm.LoadModel(dataJson["UrlModelPath"][0].ToString());
-                    gm._diffuseMap = Texture.LoadFromFile(dataJson["DiffuseURLPath"][0].ToString());
-                    gm._specularMap = Texture.LoadFromFile(dataJson["SpecularURLPath"][0].ToString());
+                    gm.LoadModel(CurrentProyectUrl + "/Proyects/Test/Models/" + dataJson["UrlModelPath"][0].ToString());
+                    gm._diffuseMap = Texture.LoadFromFile    (CurrentProyectUrl + "/Proyects/Test/Textures/" + dataJson["DiffuseURLPath"][0].ToString());
+                    gm._specularMap = Texture.LoadFromFile   (CurrentProyectUrl + "/Proyects/Test/Textures/" + dataJson["SpecularURLPath"][0].ToString());
 
                     gm._specularMapURL = dataJson["SpecularURLPath"][0].ToString();
                     gm._diffuseMapURL = dataJson["DiffuseURLPath"][0].ToString();

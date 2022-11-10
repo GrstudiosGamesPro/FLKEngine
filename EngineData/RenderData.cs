@@ -219,8 +219,7 @@ namespace FLKEngine.EngineData
 #if DEV
             if (CurrentObjectSelect != null && kd.IsKeyPressed(Keys.Delete))
             {
-                CurrentOpenScene.ObjectsInScene.Remove(CurrentObjectSelect);
-                EngineWindows.instance.CurrentObjectSelect = null;
+                CurrentObjectSelect.Delete();
             }
 #endif
 

@@ -10,6 +10,7 @@ using Jitter.LinearMath;
 using FLKEngine.Components.GameObjectMaster;
 using MoonSharp.Interpreter;
 using FLKEngine.Components.Data;
+using FLKEngine.Librarys;
 
 namespace FLKEngine.Components
 {
@@ -180,6 +181,19 @@ namespace FLKEngine.Components
             Console.WriteLine("Component GameObject Initialize");
 
             EngineWindows.instance.CurrentOpenScene.AddBody(body);
+        }
+
+        public void Delete()
+        {
+            foreach (var d in modelo.Buffers)
+            {
+                d.Dispose ();
+
+                File.Delete(EngineWindows.instance.CurrentProyectUrl + "/Proyects/Test/JsonData/" + EngineWindows.instance.CurrentObjectSelect.ObjectID + ".FLKData");
+
+                EngineWindows.instance.CurrentOpenScene.ObjectsInScene.Remove(EngineWindows.instance.CurrentObjectSelect);
+                EngineWindows.instance.CurrentObjectSelect = null;
+            }
         }
 
         public void RenderObjectOnStart()

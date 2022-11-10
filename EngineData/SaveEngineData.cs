@@ -45,13 +45,18 @@ namespace FLKEngine.EngineData
                     ScaleArray.Add(EngineWindows.instance.CurrentOpenScene.ObjectsInScene[i].Scale.Z);
 
                     JArray PathModelURL = new JArray();
-                    PathModelURL.Add(EngineWindows.instance.CurrentOpenScene.ObjectsInScene[i].CurrentModelPath);
+
+                    string getNameFile = Path.GetFileName (EngineWindows.instance.CurrentOpenScene.ObjectsInScene[i].CurrentModelPath);
+
+                    PathModelURL.Add (getNameFile);
 
                     JArray PathDiffuseTextureURL = new JArray();
-                    PathDiffuseTextureURL.Add(EngineWindows.instance.CurrentOpenScene.ObjectsInScene[i]._diffuseMapURL);
+                    string diffuseMapName = Path.GetFileName (EngineWindows.instance.CurrentOpenScene.ObjectsInScene[i]._diffuseMapURL);
+                    PathDiffuseTextureURL.Add (diffuseMapName);
 
                     JArray PathTextureSpecularMapURL = new JArray();
-                    PathTextureSpecularMapURL.Add(EngineWindows.instance.CurrentOpenScene.ObjectsInScene[i]._specularMapURL);
+                    string SpecularMap = Path.GetFileName(EngineWindows.instance.CurrentOpenScene.ObjectsInScene[i]._specularMapURL);
+                    PathTextureSpecularMapURL.Add (SpecularMap);
 
                     JArray PathScripts = new JArray();
                     JArray PathScriptsName = new JArray();
@@ -116,13 +121,16 @@ namespace FLKEngine.EngineData
                     RotationArray.Add(EngineWindows.instance.CurrentOpenScene.ObjectsInScene[i].Rotation.Z);
 
                     JArray PathModelURL = new JArray();
-                    PathModelURL.Add(EngineWindows.instance.CurrentOpenScene.ObjectsInScene[i].CurrentModelPath);
+                    string getNameFile = Path.GetFileName(EngineWindows.instance.CurrentOpenScene.ObjectsInScene[i].CurrentModelPath);
+                    PathModelURL.Add(getNameFile);
 
                     JArray PathDiffuseTextureURL = new JArray();
-                    PathDiffuseTextureURL.Add(EngineWindows.instance.CurrentOpenScene.ObjectsInScene[i]._diffuseMapURL);
+                    string diffuseMapName = Path.GetFileName(EngineWindows.instance.CurrentOpenScene.ObjectsInScene[i]._diffuseMapURL);
+                    PathDiffuseTextureURL.Add(diffuseMapName);
 
                     JArray PathTextureSpecularMapURL = new JArray();
-                    PathTextureSpecularMapURL.Add(EngineWindows.instance.CurrentOpenScene.ObjectsInScene[i]._specularMapURL);
+                    string SpecularMap = Path.GetFileName(EngineWindows.instance.CurrentOpenScene.ObjectsInScene[i]._specularMapURL);
+                    PathTextureSpecularMapURL.Add(SpecularMap);
 
                     JArray PathScripts = new JArray();
                     JArray PathScriptsName = new JArray();
