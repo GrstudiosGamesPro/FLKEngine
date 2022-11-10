@@ -1,0 +1,37 @@
+{
+  "ObjectName": [
+    "GameObject6440"
+  ],
+  "Scale": [
+    1.0,
+    1.0,
+    1.0
+  ],
+  "ObjectID": [
+    "S1Q2T4X1C0A0L7N0Q3R4B4Y0D4Y8G7I6V3G4G3F8"
+  ],
+  "Position": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "Rotation": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "UrlModelPath": [
+    "esfera.fbx"
+  ],
+  "DiffuseURLPath": [
+    "1-skybox-studio-hyper-realistic-mountains-lake-hd-skybox-2-crea-panorama-e-vr.jpg"
+  ],
+  "SpecularURLPath": [
+    "1-skybox-studio-hyper-realistic-mountains-lake-hd-skybox-2-crea-panorama-e-vr.jpg"
+  ],
+  "Scripts": [],
+  "ScriptsName": [],
+  "UsePhysics": [
+    false
+  ]
+}
