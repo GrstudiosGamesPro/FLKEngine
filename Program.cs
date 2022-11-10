@@ -1,4 +1,5 @@
-﻿using OpenTK.Mathematics;
+﻿using FLKEngine.Commons;
+using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
 using System.Reflection;
@@ -28,8 +29,6 @@ namespace FLKEngine
 #if DEV
             string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Extras/Modelos/rm.fbx");
             //string[] fileArray = Directory.GetFiles(path);
-
-
 
             if (Directory.Exists(CurrentDirector + "/Proyects/Test/"))
             {
@@ -126,6 +125,11 @@ namespace FLKEngine
                 }
             }
 #endif
+
+            /*
+            SetupNewProyect NewProyectScript = new SetupNewProyect();
+            NewProyectScript.CreateNewProyect (CurrentDirector);
+            */
 
             var nativeWindowSettings = new NativeWindowSettings()
             {

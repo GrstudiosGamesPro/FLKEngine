@@ -13,6 +13,7 @@ using System.Text.Json.Nodes;
 using FLKEngine.EngineData;
 using FLKEngine.Librarys.LuaImplementation;
 using ImGuiSharp;
+using FLKEngine.GUI;
 
 namespace FLKEngine
 {
@@ -51,7 +52,7 @@ namespace FLKEngine
         bool ReadyForStartScene;
 
         public EngineWindows window;
-        List<Keys> keysExist = new List<Keys>();
+        public EngineHUD hud = new EngineHUD();
 
         public string EngineData
         {
@@ -286,6 +287,12 @@ namespace FLKEngine
             RenderData data = new RenderData();
             data.Render (args);
 
+#if DEV
+            _ImGUI.Update(EngineWindows.instance, (float)args.Time);
+            hud.DrawEngineGUI();
+            _ImGUI.Render();
+#endif
+
             SwapBuffers();
         }
 
@@ -294,11 +301,6 @@ namespace FLKEngine
             data.DevEdition (e);
             CurrentOpenScene.UpdateScene();
             Delta = (float)e.Time;
-
-            /*
-            if (CurrentOpenScene.ObjectsInScene[1] != null && CurrentObjectSelect != null)
-            CurrentOpenScene.ObjectsInScene[1].Position = CurrentObjectSelect.Position;
-            */
         }
 
 
@@ -316,7 +318,7 @@ namespace FLKEngine
             base.OnResize(e);
 
 #if DEV
-            data._ImGUI.WindowResized (e.Width, e.Height);
+            _ImGUI.WindowResized (e.Width, e.Height);
 #endif
 
             GL.Viewport(0, 0, Size.X, Size.Y);

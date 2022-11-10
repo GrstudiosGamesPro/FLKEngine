@@ -60,16 +60,6 @@ namespace FLKEngine.EngineData
 
         public int _vaoLamp;
 
-#if DEV
-        public ImGuiController _ImGUI
-        {
-            get
-            {
-                return EngineWindows.instance._ImGUI;
-            }
-        }
-#endif
-
         public Vector3[] _pointLightPositions
         {
             get
@@ -169,6 +159,12 @@ namespace FLKEngine.EngineData
 
         public void OnLoad ()
         {
+            Console.WriteLine("Current Folder Proyect: " + CurrentProyectUrl);
+
+            GL.ClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+
+            GL.Enable(EnableCap.DepthTest);
+
             _vertexBufferObject = GL.GenBuffer();
             GL.BindBuffer(BufferTarget.ArrayBuffer, _vertexBufferObject);
             GL.BufferData(BufferTarget.ArrayBuffer, _vertices.Length * sizeof(float), _vertices, BufferUsageHint.StaticDraw);
@@ -394,12 +390,6 @@ namespace FLKEngine.EngineData
 
                 GL.DrawArrays(PrimitiveType.Triangles, 0, 36);
             }
-#if DEV
-            _ImGUI.Update(EngineWindows.instance, (float)args.Time);
-            EngineHUD hud = new EngineHUD();
-            hud.DrawEngineGUI();
-            _ImGUI.Render();
-#endif
         }
     }
 }
