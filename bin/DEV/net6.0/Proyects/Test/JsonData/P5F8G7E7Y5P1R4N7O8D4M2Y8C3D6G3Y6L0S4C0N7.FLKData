@@ -1,0 +1,37 @@
+{
+  "ObjectName": [
+    "GameObject6709"
+  ],
+  "Scale": [
+    4.0,
+    4.0,
+    4.0
+  ],
+  "ObjectID": [
+    "P5F8G7E7Y5P1R4N7O8D4M2Y8C3D6G3Y6L0S4C0N7"
+  ],
+  "Position": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "Rotation": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "UrlModelPath": [
+    "esfera.fbx"
+  ],
+  "DiffuseURLPath": [
+    "SkyBox_10_HDR.jpg"
+  ],
+  "SpecularURLPath": [
+    "SkyBox_10_HDR.jpg"
+  ],
+  "Scripts": [],
+  "ScriptsName": [],
+  "UsePhysics": [
+    false
+  ]
+}

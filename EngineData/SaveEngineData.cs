@@ -9,12 +9,17 @@ using System.Threading.Tasks;
 using Newtonsoft.Json.Bson;
 using MoonSharp.Interpreter;
 using System.Security.Cryptography.X509Certificates;
+using System.Security.Cryptography;
+using FLKEngine.Commons;
 
 namespace FLKEngine.EngineData
 {
     public class SaveEngineData
     {
-        
+
+        string JsonSave = "";
+
+
         public void Save(bool SaveAndExit)
         {
             if (!SaveAndExit)
@@ -89,6 +94,8 @@ namespace FLKEngine.EngineData
 
                     string json = obj.ToString();
 
+                    JsonSave = json;
+
                     File.WriteAllText(EngineWindows.instance.CurrentProyectUrl + "/Proyects/Test/JsonData/" + EngineWindows.instance.CurrentOpenScene.ObjectsInScene[i].ObjectID + ".FLKData", json);
                 }
                 EngineWindows.instance.ConsoleData.Log("Data saved successfully");
@@ -162,6 +169,7 @@ namespace FLKEngine.EngineData
                     obj["UsePhysics"] = UsePhysics;
 
                     string json = obj.ToString();
+                    JsonSave = json;
 
                     File.WriteAllText(EngineWindows.instance.CurrentProyectUrl + "/Proyects/Test/JsonData/" + EngineWindows.instance.CurrentOpenScene.ObjectsInScene[i].ObjectID + ".FLKData", json);
                 }
@@ -169,6 +177,5 @@ namespace FLKEngine.EngineData
                 EngineWindows.instance.Close();
             }
         }
-
     }
 }

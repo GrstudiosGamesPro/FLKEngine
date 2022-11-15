@@ -14,6 +14,7 @@ using FLKEngine.EngineData;
 using FLKEngine.Librarys.LuaImplementation;
 using ImGuiSharp;
 using FLKEngine.GUI;
+using NUnit.Framework.Internal;
 
 namespace FLKEngine
 {
@@ -47,10 +48,10 @@ namespace FLKEngine
 
         public RenderData data;
         public GameObject _camera;
-        bool ReadyForStartScene;
 
         public EngineWindows window;
         public EngineHUD hud = new EngineHUD();
+
 
         public string EngineData
         {
@@ -140,7 +141,6 @@ namespace FLKEngine
                 CurrentOpenScene.InitializeScene();
             }
 
-
             GL.ClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
             GL.Enable(EnableCap.DepthTest);
@@ -151,14 +151,14 @@ namespace FLKEngine
             _lightingShader = new Shader(GetCurrentShaderFolder + "shader." + EngineExtensionsVert, GetCurrentShaderFolder + "lighting." + EngineExtensionsFrag);
             _lampShader = new Shader(GetCurrentShaderFolder + "shader." + EngineExtensionsVert, GetCurrentShaderFolder + "shader." + EngineExtensionsFrag);
 
-            //Console.WriteLine();
-            data.OnLoad();
-
 #if DEV
             LoadSceneData();
 #else
             LoadGameData();
 #endif
+
+            //Console.WriteLine();
+            data.OnLoad();
         }
 
 
@@ -212,59 +212,61 @@ namespace FLKEngine
 
         public void LoadGameData()
         {
-            if (Directory.Exists(CurrentProyectUrl + "/Proyects/Test/JsonData/"))
+
+            string[] AllArchives = Directory.GetFiles(CurrentProyectUrl + "/FLKData/ObjectsJson/");
+
+            for (int i = 0; i < AllArchives.Length; i++)
             {
-                string[] AllArchives = Directory.GetFiles(CurrentProyectUrl + "/FLKData/ObjectsJson/");
+                string JsonLoaded = AllArchives[i];
 
-                for (int i = 0; i < AllArchives.Length; i++)
-                {
-                    string JsonLoaded = AllArchives[i];
+                string JsonRead = File.ReadAllText(JsonLoaded);
 
-                    string JsonRead = File.ReadAllText(JsonLoaded);
+                Console.WriteLine("Loading file: " + JsonRead);
 
-                    Console.WriteLine("Loading file: " + JsonRead);
+                var dataJson = JsonArray.Parse(JsonRead);
 
-                    var dataJson = JsonArray.Parse(JsonRead);
+                GameObject gm = new GameObject();
+                gm.Name = dataJson["NameObject"][0].ToString();
+                gm.ObjectID = dataJson["ObjectID"][0].ToString();
 
-                    GameObject gm = new GameObject();
-                    gm.Name = dataJson["NameObject"][0].ToString();
-                    gm.ObjectID = dataJson["ObjectID"][0].ToString();
+                string PathModel = Path.ChangeExtension(CurrentProyectUrl + "/FLKData/ModelsData/" + dataJson["UrlModelPath"][0].ToString(), ".FLKModelPackageData");
+                Console.WriteLine("Objeto a cargar: " + PathModel);
 
-                    string newExtensionModel = Path.ChangeExtension(dataJson["UrlModelPath"][0].ToString(), ".FLKModelPackageData");
+                gm.LoadModel(PathModel);
 
-                    gm.LoadModel(CurrentProyectUrl + "/FLKData/ModelsData/" + newExtensionModel);
+                string diffuseMaptextureNexExtension = Path.ChangeExtension(dataJson["DiffuseURLPath"][0].ToString(), ".FLKTexturePackageData");
+                string specularMaptextureNexExtension = Path.ChangeExtension(dataJson["SpecularURLPath"][0].ToString(), ".FLKTexturePackageData");
 
-                    string diffuseMaptextureNexExtension = Path.ChangeExtension(dataJson["DiffuseURLPath"][0].ToString(), ".FLKTexturePackageData");
-                    string specularMaptextureNexExtension = Path.ChangeExtension(dataJson["SpecularURLPath"][0].ToString(), ".FLKTexturePackageData");
-
-                    gm._diffuseMap = Texture.LoadFromFile(CurrentProyectUrl + "/FLKData/TextureData/" + diffuseMaptextureNexExtension);
-                    gm._specularMap = Texture.LoadFromFile(CurrentProyectUrl + "/FLKData/TextureData/" + specularMaptextureNexExtension);
+                gm._diffuseMap = Texture.LoadFromFile(CurrentProyectUrl + "/FLKData/TextureData/" + diffuseMaptextureNexExtension);
+                gm._specularMap = Texture.LoadFromFile(CurrentProyectUrl + "/FLKData/TextureData/" + specularMaptextureNexExtension);
 
 
 #if WINDOWS
                 gm.ChangePositionOnLoadGame(new Vector3((float)dataJson["Position"][0], (float)dataJson["Position"][1], (float)dataJson["Position"][2]));
 #else
-                    gm.Position = new Vector3((float)dataJson["Position"][0], (float)dataJson["Position"][1], (float)dataJson["Position"][2]);
+                gm.Position = new Vector3((float)dataJson["Position"][0], (float)dataJson["Position"][1], (float)dataJson["Position"][2]);
 #endif
-                    gm.Rotation = new Vector3((float)dataJson["Rotation"][0], (float)dataJson["Rotation"][1], (float)dataJson["Rotation"][2]);
-                    gm.Scale = new Vector3((float)dataJson["Scale"][0], (float)dataJson["Scale"][1], (float)dataJson["Scale"][2]);
+                gm.Rotation = new Vector3((float)dataJson["Rotation"][0], (float)dataJson["Rotation"][1], (float)dataJson["Rotation"][2]);
+                gm.Scale = new Vector3((float)dataJson["Scale"][0], (float)dataJson["Scale"][1], (float)dataJson["Scale"][2]);
 
-                    int scriptsExistentes = dataJson["Scripts"].AsArray().Count;
+                int scriptsExistentes = dataJson["Scripts"].AsArray().Count;
 
-                    for (int a = 0; a < scriptsExistentes; a++)
-                    {
-                        LuaCompiller sl = new LuaCompiller();
-                        sl.ScriptName = (string)dataJson["ScriptsName"][a];
-                        sl.ObjectID = (string)dataJson["Scripts"][a];
-                        gm.lua.Add(sl);
-                    }
+                for (int a = 0; a < scriptsExistentes; a++)
+                {
+                    LuaCompiller sl = new LuaCompiller();
+                    sl.ScriptName = (string)dataJson["ScriptsName"][a];
+                    sl.ObjectID = (string)dataJson["Scripts"][a];
+                    gm.lua.Add(sl);
+                }
 
-                    gm.UsePhysics = (bool)dataJson["UsePhysics"][0];
+                gm.UsePhysics = (bool)dataJson["UsePhysics"][0];
 #if !DEV
                 gm.StartScript();
 #endif
-                }
             }
+
+            Console.WriteLine("Objetos existentes: " + CurrentOpenScene.ObjectsInScene.Count);
+
         }
 
 
@@ -277,12 +279,23 @@ namespace FLKEngine
             _camera.GetComponent<Camera>().owner = _camera;
             CurrentOpenScene.ObjectsInScene.Remove(_camera);
             _camera.owner = _camera;
-            ReadyForStartScene = true;
         }
 
         protected override void OnRenderFrame(FrameEventArgs args)
         {
             data.Render (args);
+
+            var d = KeyboardState;
+
+            if (d.IsKeyDown (Keys.LeftControl))
+            {
+                if (d.IsKeyPressed(Keys.S))
+                {
+                    SaveEngineData data = new SaveEngineData();
+                    data.Save(false);
+                }
+            }
+
 
 #if DEV
             _ImGUI.Update(EngineWindows.instance, (float)args.Time);
@@ -293,7 +306,7 @@ namespace FLKEngine
             SwapBuffers();
         }
 
-        protected override void OnUpdateFrame(FrameEventArgs e)
+        protected override void OnUpdateFrame   (FrameEventArgs e)
         {
             data.DevEdition (e);
             CurrentOpenScene.UpdateScene();
@@ -301,7 +314,7 @@ namespace FLKEngine
         }
 
 
-        protected override void OnMouseWheel(MouseWheelEventArgs e)
+        protected override void OnMouseWheel   (MouseWheelEventArgs e)
         {
             base.OnMouseWheel(e);
 
@@ -318,7 +331,6 @@ namespace FLKEngine
 #if DEV
             _ImGUI.WindowResized (e.Width, e.Height);
 #endif
-
 
             withd = e.Width;
             height = e.Height;

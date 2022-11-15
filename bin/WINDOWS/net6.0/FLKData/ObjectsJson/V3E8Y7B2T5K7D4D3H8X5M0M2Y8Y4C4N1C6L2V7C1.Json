@@ -1,0 +1,38 @@
+{
+  "GameExportData": "V1.0",
+  "ObjectID": [
+    "V3E8Y7B2T5K7D4D3H8X5M0M2Y8Y4C4N1C6L2V7C1"
+  ],
+  "Position": [
+    3.08,
+    0.0,
+    -3.9
+  ],
+  "Rotation": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "Scale": [
+    0.01,
+    0.01,
+    0.01
+  ],
+  "NameObject": [
+    "GameObject5674"
+  ],
+  "UrlModelPath": [
+    "Dragon.fbx"
+  ],
+  "DiffuseURLPath": [
+    "HAND_C.jpg"
+  ],
+  "SpecularURLPath": [
+    "HAND_C.jpg"
+  ],
+  "UsePhysics": [
+    false
+  ],
+  "Scripts": [],
+  "ScriptsName": []
+}

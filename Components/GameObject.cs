@@ -77,7 +77,7 @@ namespace FLKEngine.Components
         public RigidBody body;
 
         public List<Camera> Cameras = new List<Camera>();
-        public Model modelo;
+        public Model modelo = new Model();
 
         private ComponentManager componentManager;
         public Texture _diffuseMap;
@@ -108,7 +108,7 @@ namespace FLKEngine.Components
 
         public GameObject()
         {
-            string modelPath = "E:\\Proyectos VS\\FLKEEngine\\Extras\\Modelos\\car.FLKPackageData";
+            string modelPath = EngineWindows.instance.CurrentProyectUrl + "EngineLibrarys/ModelsData/Capsula.fbx";
             modelo = Model.FromFile(modelPath);
 
             CurrentModelPath = modelPath;

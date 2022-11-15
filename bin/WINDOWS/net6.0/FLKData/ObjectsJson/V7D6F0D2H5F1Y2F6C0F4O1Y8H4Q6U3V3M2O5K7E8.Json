@@ -1,0 +1,42 @@
+{
+  "GameExportData": "V1.0",
+  "ObjectID": [
+    "V7D6F0D2H5F1Y2F6C0F4O1Y8H4Q6U3V3M2O5K7E8"
+  ],
+  "Position": [
+    2.6,
+    0.0,
+    0.0
+  ],
+  "Rotation": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "Scale": [
+    0.01,
+    0.01,
+    0.01
+  ],
+  "NameObject": [
+    "GameObject8841"
+  ],
+  "UrlModelPath": [
+    "Capsula.fbx"
+  ],
+  "DiffuseURLPath": [
+    "HAND_C.jpg"
+  ],
+  "SpecularURLPath": [
+    "HAND_C.jpg"
+  ],
+  "UsePhysics": [
+    false
+  ],
+  "Scripts": [
+    "N0F5W3K2E1R3Y8D3P3Y0M0Y4B5F6C5X5H5C7B5I1"
+  ],
+  "ScriptsName": [
+    "Script_7976"
+  ]
+}

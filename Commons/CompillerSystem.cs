@@ -79,17 +79,17 @@ namespace FLKEngine.Commons.Compiller
                         ConsoleData.Log("Assembling Scripts: " + Path.GetFileName(newName));
 
                         string getScriptsByte = File.ReadAllText(filesScripts[i]);
-                        BinaryFormatterEasy fs = new BinaryFormatterEasy();                
+                        MD5Encryptor dm = new MD5Encryptor();
                         
-                        File.WriteAllText(CurrentProyectUrl + "/Exports/Windows/FLKData/ScriptsData/" + Path.GetFileName(newName), fs.SerializeObject (getScriptsByte));
+                        File.WriteAllText(CurrentProyectUrl + "/Exports/Windows/FLKData/ScriptsData/" + Path.GetFileName(newName), dm.Encrypt (getScriptsByte));
                     }
                     else
                     {
                         File.Delete(CurrentProyectUrl + "/Exports/Windows/FLKData/ScriptsData/" + Path.GetFileName(newName));
                         string getScriptsByte = File.ReadAllText(filesScripts[i]);
-                        BinaryFormatterEasy fs = new BinaryFormatterEasy();
+                        MD5Encryptor dm = new MD5Encryptor();
 
-                        File.WriteAllText(CurrentProyectUrl + "/Exports/Windows/FLKData/ScriptsData/" + Path.GetFileName(newName), fs.SerializeObject(getScriptsByte));
+                        File.WriteAllText(CurrentProyectUrl + "/Exports/Windows/FLKData/ScriptsData/" + Path.GetFileName(newName), dm.Encrypt (getScriptsByte));
                     }
                 }
 
@@ -182,17 +182,18 @@ namespace FLKEngine.Commons.Compiller
                         ConsoleData.Log("Assembling Scripts: " + Path.GetFileName(newName));
 
                         string getScriptsByte = File.ReadAllText(filesScripts[i]);
-                        BinaryFormatterEasy fs = new BinaryFormatterEasy();
+                        MD5Encryptor dm = new MD5Encryptor();
 
-                        File.WriteAllText(CurrentProyectUrl + "/Exports/Windows/FLKData/ScriptsData/" + Path.GetFileName(newName), fs.SerializeObject(getScriptsByte));
+
+                        File.WriteAllText(CurrentProyectUrl + "/Exports/Windows/FLKData/ScriptsData/" + Path.GetFileName(newName), dm.Encrypt (getScriptsByte));
                     }
                     else
                     {
                         File.Delete(CurrentProyectUrl + "/Exports/Windows/FLKData/ScriptsData/" + Path.GetFileName(newName));
                         string getScriptsByte = File.ReadAllText(filesScripts[i]);
-                        BinaryFormatterEasy fs = new BinaryFormatterEasy();
+                        MD5Encryptor dm = new MD5Encryptor();
 
-                        File.WriteAllText(CurrentProyectUrl + "/Exports/Windows/FLKData/ScriptsData/" + Path.GetFileName(newName), fs.SerializeObject(getScriptsByte));
+                        File.WriteAllText(CurrentProyectUrl + "/Exports/Windows/FLKData/ScriptsData/" + Path.GetFileName(newName), dm.Encrypt(getScriptsByte));
                     }
                 }
 
@@ -306,7 +307,10 @@ namespace FLKEngine.Commons.Compiller
                     ObjectsToWriteRotation.Add(GetOBJ.Rotation.Z);
                     PathUsePhysics.Add(GetOBJ.UsePhysics);
 
-                    ObjectsToWriteScale.Add(GetOBJ.Scale);
+                    ObjectsToWriteScale.Add(GetOBJ.Scale.X);
+                    ObjectsToWriteScale.Add(GetOBJ.Scale.Y);
+                    ObjectsToWriteScale.Add(GetOBJ.Scale.Z);
+
                     PathModelURL.Add(Path.GetFileName(CurrentOpenScene.ObjectsInScene[J].CurrentModelPath));
 
                     PathDiffuseTextureURL.Add(Path.GetFileName(CurrentOpenScene.ObjectsInScene[J]._diffuseMapURL));

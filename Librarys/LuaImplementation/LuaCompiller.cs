@@ -29,11 +29,10 @@ namespace FLKEngine.Librarys.LuaImplementation
 #else
             string ByteRead = File.ReadAllText(EngineWindows.instance.CurrentProyectUrl + "/FLKData/ScriptsData/" + ObjectID + ".FLKScripts");
 #endif
-
-            BinaryFormatterEasy eas = new BinaryFormatterEasy();
+            MD5Encryptor md = new MD5Encryptor();
 
 #if !DEV
-            string Scripting = eas.DeserializeObject (ByteRead).ToString();
+            string Scripting = md.Desencrypt(ByteRead);
 #else
             string Scripting = ByteRead;
 #endif
@@ -74,15 +73,15 @@ namespace FLKEngine.Librarys.LuaImplementation
 #else
             string ByteRead = File.ReadAllText(EngineWindows.instance.CurrentProyectUrl + "/FLKData/ScriptsData/" + ObjectID + ".FLKScripts");
 #endif
-
-            BinaryFormatterEasy eas = new BinaryFormatterEasy();
-
+            MD5Encryptor md = new MD5Encryptor();
 
 #if !DEV
-            string Scripting = eas.DeserializeObject (ByteRead).ToString();
+            string Scripting = md.Desencrypt(ByteRead);
 #else
             string Scripting = ByteRead;
 #endif
+
+
             LuaCL lcl = new LuaCL();
             Script script = new Script();
 

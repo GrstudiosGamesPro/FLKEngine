@@ -349,10 +349,11 @@ namespace FLKEngine.EngineData
                     }
                 }
             }
-            
+
 #endif
 
 
+#if DEV
             for (int i = 0; i < CurrentOpenScene.ObjectsInScene.Count; i++)
             {
                 Matrix4 model = Matrix4.CreateScale  (CurrentOpenScene.ObjectsInScene[i].Scale);
@@ -371,6 +372,31 @@ namespace FLKEngine.EngineData
                     CurrentOpenScene.ObjectsInScene[i].modelo.Draw();
                 }
             }
+#else
+            for (int i = 0; i < CurrentOpenScene.ObjectsInScene.Count; i++)
+            {
+                Matrix4 model = Matrix4.CreateScale   (CurrentOpenScene.ObjectsInScene[i].Scale      );
+                model *= Matrix4.CreateRotationX      (CurrentOpenScene.ObjectsInScene[i].Rotation.X );
+                model *= Matrix4.CreateRotationY      (CurrentOpenScene.ObjectsInScene[i].Rotation.Y );
+                model *= Matrix4.CreateRotationZ      (CurrentOpenScene.ObjectsInScene[i].Rotation.Z );
+                model *= Matrix4.CreateTranslation    (CurrentOpenScene.ObjectsInScene[i].Position   );
+
+                _lightingShader.SetMatrix4("model", model);
+
+
+                CurrentOpenScene.ObjectsInScene[i]._diffuseMap.Use(TextureUnit.Texture0);
+                CurrentOpenScene.ObjectsInScene[i]._specularMap.Use(TextureUnit.Texture1);
+
+                if (CurrentOpenScene.ObjectsInScene[i].modelo != null)
+                {
+                    CurrentOpenScene.ObjectsInScene[i].modelo.Draw();
+                }
+                else
+                {
+                    Console.WriteLine ("The Object Model Component is null: " + CurrentOpenScene.ObjectsInScene[i].ObjectID);
+                }
+            }
+#endif
 
             GL.BindVertexArray(_vaoLamp);
 

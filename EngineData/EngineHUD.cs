@@ -40,7 +40,11 @@ namespace FLKEngine.GUI
                 return EngineWindows.instance.CurrentProyectUrl + "/Proyects/Test/Models/";
             }
         }
-        
+
+        bool CreatingSkyBox;
+        string SkyToSelect;
+
+
 
 #if DEV
         public void DrawEngineGUI()
@@ -59,8 +63,6 @@ namespace FLKEngine.GUI
             style.Colors[(int)ImGuiCol.FrameBg] = new System.Numerics.Vector4(0.5f, 0.5f, 0.5f, 52);
             style.Colors[(int)ImGuiCol.TitleBg] = new System.Numerics.Vector4(0.1f, 0.1f, 0.1f, 1);
             style.Colors[(int)ImGuiCol.TitleBgActive] = new System.Numerics.Vector4(0.3f, 0.3f, 0.3f, 1);
-            
-            
 
             if (ImGui.BeginMainMenuBar())
             {
@@ -80,7 +82,7 @@ namespace FLKEngine.GUI
                     }
 
                     ImGui.Separator();
-                    if (ImGui.MenuItem("Save", ""))
+                    if (ImGui.MenuItem("Save", "ctrl + s"))
                     {
                         SaveEngineData data = new SaveEngineData();
                         data.Save(false);
@@ -154,8 +156,58 @@ namespace FLKEngine.GUI
                 ImGui.EndMainMenuBar();
             }
 
+            if (CreatingSkyBox)
+            {
+                if (ImGui.Begin ("New SkyBox Setting"))
+                {
+                    string[] skg = Directory.GetFiles(EngineWindows.instance.CurrentProyectUrl + "/Proyects/Test/SkyBoxTextures/");
+
+
+                    if (ImGui.TreeNode("Select Sky"))
+                    {
+                        foreach (string d in skg)
+                        {
+                            if (ImGui.Button("Select SkyBox: " + Path.GetFileName(d)))
+                            {
+                                SkyToSelect = d;
+                            }
+                        }
+                        ImGui.TreePop();
+                    }
+
+
+
+
+                    if (ImGui.Button("OK"))
+                    {
+                        GameObject SkyBox = new GameObject();
+                        SkyBox.Name = "SkyBox_1";
+                        SkyBox._diffuseMap = Texture.LoadFromFile (SkyToSelect);
+                        SkyBox._specularMap = Texture.LoadFromFile (SkyToSelect);
+                        SkyBox.LoadModel (EngineWindows.instance.CurrentProyectUrl + "/Proyects/Test/DefaultModels/Sphere.fbx");
+
+                        SkyBox.Scale = new Vector3 (5, 5, 5);
+
+                        SkyToSelect = "";
+                        CreatingSkyBox = false;
+                    }
+
+                    if (ImGui.Button("CANCEL"))
+                    {
+                        CreatingSkyBox = false;
+                    }
+                    ImGui.End();
+                }
+            }
+
             if (ImGui.Begin("Hierarchy"))
             {
+                if (ImGui.Button ("Create SkyBox"))
+                {
+                    CreatingSkyBox = true;
+                }
+
+
                 ImGui.Text("Objects: " + CurrentOpenScene.ObjectsInScene.Count.ToString());
 
                 if (ImGui.TreeNode("Objects In Scene"))
